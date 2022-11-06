@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck shell=dash  root密码114514114514  SSH端口222，默认无法发用密码登录，仅允许密钥登录
+# shellcheck shell=dash  root密码123123123  SSH端口22345，默认无法发用密码登录，仅允许密钥登录
 set -eu
 
 err() {
@@ -41,10 +41,12 @@ configure_sshd() {
     sshd_config_backup=
     in_target sed -Ei \""s/^#?$1 .+/$1 $2/"\" /etc/ssh/sshd_config
     in_target echo \""precedence  ::ffff:0:0/96  100\"" >> /etc/gai.conf
-    in_target sed -ri \""s/^#?Port.*/Port 222/g\"" /etc/ssh/sshd_config
+    in_target sed -ri \""s/^#?Port.*/Port 22345/g\"" /etc/ssh/sshd_config
     in_target sed -ri \""s/^#?PasswordAuthentication.*/PasswordAuthentication no/g\"" /etc/ssh/sshd_config
 	in_target mkdir /root/.ssh
-	in_target echo \""ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5qK3fDbxZshKP3MbQo4xm1YNmTQsHcapbF8wAXJJcCgxtzujH9QuFCeQzsQ3QET2qZgG1k0GfTV6slRdrJJeI8fdwFgRc28JEhXh4rGx8MUdotJh8eVAnygWATBtet2Au5gpn3s3s44XqgnWXY+bRGJ6WoB58/3fjPG1YZIR5wh9knNxRt/9VO8YCTBqQP3z5hdPuNldx3jgIuFNhcI1qBVnQZ2czC2Zv8sHDDuiuNoaomKsg7LgbhKPnvRfEGb+yZaU/KKwbEJwbFcZkT7QiW90OhYVKT2+K8xEsUpR4ocH+SxgvFrpyKAXkSqF/Wwe32baAlzrNwucLdsS+jBk3w==\">>/root/.ssh/authorized_keys"
+	in_target echo \""ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+I1HhcBcgv/6WGPTmnsUuV3cun1mUOAmwBdJnk7JwL xingchen
+
+\">>/root/.ssh/authorized_keys"
 	
 }
 
@@ -220,7 +222,7 @@ mirror_proxy=
 security_repository=http://security.debian.org/debian-security
 account_setup=true
 username=root
-password=114514114514
+password=123123123
 authorized_keys_url=
 sudo_with_password=false
 timezone=Asia/Shanghai
