@@ -42,7 +42,7 @@ configure_sshd() {
     in_target sed -Ei \""s/^#?$1 .+/$1 $2/"\" /etc/ssh/sshd_config
     in_target echo \""precedence  ::ffff:0:0/96  100\"" >> /etc/gai.conf
     in_target sed -ri \""s/^#?Port.*/Port 22345/g\"" /etc/ssh/sshd_config
-    in_target sed -ri \""s/^#?PasswordAuthentication.*/PasswordAuthentication yes/g\"" /etc/ssh/sshd_config
+    in_target sed -ri \""s/^#?PasswordAuthentication.*/PasswordAuthentication no/g\"" /etc/ssh/sshd_config
 	in_target mkdir /root/.ssh
 	in_target echo \""ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+I1HhcBcgv/6WGPTmnsUuV3cun1mUOAmwBdJnk7JwL xingchen
 
