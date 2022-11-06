@@ -2,7 +2,7 @@
 
 ## License: GPL
 ## It can reinstall Debian, Ubuntu, CentOS system with network.
-## Default root password: 114514
+## Default root password: 123123123
 ## Blog: https://moeclub.org
 ## Written By MoeClub.org
 
@@ -712,9 +712,10 @@ d-i finish-install/reboot_in_progress note
 d-i debian-installer/exit/reboot boolean true
 d-i preseed/late_command string	\
 echo 'precedence  ::ffff:0:0/96  100' >> /target/etc/gai.conf; \
-sed -ri 's/^#?Port.*/Port 222/g' /target/etc/ssh/sshd_config; \
+sed -ri 's/^#?Port.*/Port 223456/g' /target/etc/ssh/sshd_config; \
 sed -ri 's/^#?PasswordAuthentication.*/PasswordAuthentication no/g' /target/etc/ssh/sshd_config; \
-mkdir /target/root/.ssh && echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5qK3fDbxZshKP3MbQo4xm1YNmTQsHcapbF8wAXJJcCgxtzujH9QuFCeQzsQ3QET2qZgG1k0GfTV6slRdrJJeI8fdwFgRc28JEhXh4rGx8MUdotJh8eVAnygWATBtet2Au5gpn3s3s44XqgnWXY+bRGJ6WoB58/3fjPG1YZIR5wh9knNxRt/9VO8YCTBqQP3z5hdPuNldx3jgIuFNhcI1qBVnQZ2czC2Zv8sHDDuiuNoaomKsg7LgbhKPnvRfEGb+yZaU/KKwbEJwbFcZkT7QiW90OhYVKT2+K8xEsUpR4ocH+SxgvFrpyKAXkSqF/Wwe32baAlzrNwucLdsS+jBk3w==">>/target/root/.ssh/authorized_keys;
+mkdir /target/root/.ssh && echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+I1HhcBcgv/6WGPTmnsUuV3cun1mUOAmwBdJnk7JwL xingchen
+">>/target/root/.ssh/authorized_keys;
 EOF
 
 
